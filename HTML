@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IPTV | Planos de acesso ao aplicativo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Conheça o aplicativo, escolha seu plano e pague com Pix ou cartão pelo PagBank. As instruções de acesso chegam por e-mail após a confirmação do pagamento.">
+<meta name="theme-color" content="#090909">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IPTV — Seu próximo entretenimento começa aqui">
+<meta property="og:description" content="Escolha seu plano, pague com segurança pelo PagBank e receba as instruções de acesso por e-mail.">
+<meta property="og:image" content="/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23090909'/%3E%3Crect x='5' y='8' width='22' height='14' rx='3' fill='none' stroke='%23E31837' stroke-width='2.4'/%3E%3Cpath d='M14 12.2v5.6l4.6-2.8z' fill='%23fff'/%3E%3Cpath d='M11 26h10' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap">
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js" } }</script>
+<style>
+/* Sala escura: a página é a própria sala — tela luminosa no alto, fileiras abaixo; cada plano é um ingresso destacável. */
+:root {
+  --ink: #090909;
+  --graphite: #171717;
+  --raised: #1f1d1e;
+  --line: #2c292a;
+  --paper: #ffffff;
+  --muted: #b1abac;
+  --dim: #8f8887;
+  --red: #E31837;
+  --red-hot: #ff3a57;
+  --ember: #ffb48a;
+  --ok: #3ddc97;
+  --warn: #ffc857;
+  --display: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --body: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --r-lg: 22px;
+  --r-md: 14px;
+  --r-sm: 10px;
+  --gutter-l: max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--ink); color: var(--paper);
+  font: 400 16px/1.65 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink); }
+img, svg, canvas { max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--red-hot); outline-offset: 3px; border-radius: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--paper); color: var(--ink); padding: 10px 14px; border-radius: 8px; font-weight: 600; }
+.skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+.wrap { width: 100%; max-width: 1220px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- tipografia ---------- */
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .98; letter-spacing: -.035em; }
+h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.3rem); line-height: 1.04; letter-spacing: -.03em; }
+h3 { font-weight: 700; font-size: 1.2rem; line-height: 1.25; letter-spacing: -.01em; }
+p { margin: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: .6em; font: 700 .74rem/1 var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--red-hot); }
+.lead { color: var(--muted); font-size: clamp(1.02rem, 1.4vw, 1.18rem); max-width: 60ch; }
+.sec { padding-block: clamp(80px, 11vw, 150px); position: relative; }
+.sec-head { display: grid; gap: 18px; margin-bottom: clamp(36px, 5vw, 64px); max-width: 760px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font: 600 .72rem/1 var(--body); letter-spacing: .04em; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: rgba(255,255,255,.03); }
+.tag.warn { color: var(--warn); border-color: rgba(255,200,87,.35); background: rgba(255,200,87,.06); }
+
+/* ---------- botões ---------- */
+.btn { --bg: transparent; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid transparent; background: var(--bg); font: 700 .98rem/1 var(--display); letter-spacing: -.005em; text-decoration: none; cursor: pointer; transition: transform .35s var(--ease), background .3s, border-color .3s, box-shadow .35s; position: relative; overflow: hidden; isolation: isolate; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn.primary { --bg: var(--red); color: var(--paper); box-shadow: 0 10px 40px -12px rgba(227,24,55,.7), inset 0 1px 0 rgba(255,255,255,.18); }
+.btn.primary:hover { --bg: var(--red-hot); box-shadow: 0 16px 50px -12px rgba(255,58,87,.85), inset 0 1px 0 rgba(255,255,255,.2); }
+.btn.primary::after { content: ""; position: absolute; inset: -40% auto -40% -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-18deg); z-index: -1; transition: left .8s var(--ease); }
+.btn.primary:hover::after { left: 130%; }
+.btn.ghost { border-color: rgba(255,255,255,.22); color: var(--paper); background: rgba(255,255,255,.04); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.btn.ghost:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.08); }
+.btn.sm { min-height: 42px; padding: 0 18px; font-size: .9rem; }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; }
+
+/* ---------- cabeçalho ---------- */
+.hdr { position: fixed; z-index: 50; top: 0; left: 0; right: 0; padding-top: env(safe-area-inset-top, 0px); transition: background .4s, border-color .4s, backdrop-filter .4s; border-bottom: 1px solid transparent; }
+.hdr.scrolled { background: rgba(9,9,9,.82); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); border-bottom-color: rgba(255,255,255,.06); }
+.hdr-in { display: flex; align-items: center; gap: 24px; height: 76px; }
+.hdr:has(.preview-bar:not([hidden])) ~ main .hero-inner { padding-top: 180px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.25rem/1 var(--display); letter-spacing: .06em; }
+.logo-mark { width: 34px; height: 26px; border: 2.4px solid var(--red); border-radius: 6px; position: relative; display: grid; place-items: center; box-shadow: 0 0 22px -4px rgba(227,24,55,.8); }
+.logo-mark::before { content: ""; border-left: 8px solid var(--paper); border-top: 5px solid transparent; border-bottom: 5px solid transparent; margin-left: 2px; }
+.logo-mark::after { content: ""; position: absolute; bottom: -7px; left: 7px; right: 7px; height: 2.4px; background: var(--paper); border-radius: 2px; }
+.nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.nav a { text-decoration: none; color: var(--muted); font: 500 .92rem/1 var(--body); padding: 10px 12px; border-radius: 999px; transition: color .25s, background .25s; white-space: nowrap; }
+.nav a:hover { color: var(--paper); background: rgba(255,255,255,.06); }
+.nav a.active { color: var(--paper); }
+.nav a.active::after { content: ""; display: block; height: 2px; margin-top: 6px; border-radius: 2px; background: var(--red); }
+.hdr-cta { margin-left: 8px; }
+.menu-btn { display: none; margin-left: auto; width: 46px; height: 46px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.04); cursor: pointer; place-items: center; }
+@media (max-width: 1080px) {
+  .nav { position: absolute; top: 100%; left: 0; right: 0; max-height: calc(100dvh - 120px); overflow-y: auto; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px var(--gutter-r) 22px var(--gutter-l); background: rgba(12,12,12,.97); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); transform: translateY(-12px); opacity: 0; visibility: hidden; transition: opacity .25s, transform .3s var(--ease), visibility .3s; margin: 0; }
+  .nav.open { transform: none; opacity: 1; visibility: visible; }
+  .nav a { padding: 15px 14px; font-size: 1.05rem; border-radius: 12px; }
+  .nav a.active::after { display: none; }
+  .nav a.active { background: rgba(255,255,255,.06); }
+  .menu-btn { display: grid; }
+  .hdr-cta { margin-left: 0; }
+}
+@media (max-width: 520px) { .hdr-cta { display: none; } .nav .nav-cta { display: flex; } }
+.nav .nav-cta { display: none; margin-top: 8px; }
+
+.preview-bar { position: relative; background: repeating-linear-gradient(-45deg, rgba(255,200,87,.1) 0 12px, rgba(255,200,87,.04) 12px 24px); border-bottom: 1px solid rgba(255,200,87,.25); color: var(--warn); font-size: .86rem; }
+.preview-bar .wrap { display: flex; gap: 10px; align-items: center; padding-block: 7px; line-height: 1.35; }
+.preview-bar .icon { width: 1.05em; height: 1.05em; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: clamp(600px, 92svh, 900px); display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; }
+.hero-fallback { position: absolute; inset: 0; z-index: -3; background:
+  radial-gradient(60% 46% at 50% 26%, rgba(255,180,138,.32), transparent 70%),
+  radial-gradient(80% 60% at 50% 30%, rgba(227,24,55,.38), transparent 72%),
+  linear-gradient(180deg, #120709 0%, var(--ink) 78%); }
+.hero-fallback::after { content: ""; position: absolute; left: 12%; right: 12%; top: 11%; height: 36%; border-radius: 6px; background: linear-gradient(120deg, #3a0a12, #e31837 40%, #ffb48a 55%, #4b0c16 80%); opacity: .45; filter: blur(2px); transform: perspective(900px) rotateX(4deg); }
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; opacity: 0; transition: opacity 1.6s ease; display: block; }
+#hero-canvas.on { opacity: 1; }
+.hero-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background:
+  linear-gradient(180deg, rgba(9,9,9,.55) 0%, rgba(9,9,9,0) 22%, rgba(9,9,9,0) 44%, rgba(9,9,9,.82) 76%, var(--ink) 100%),
+  linear-gradient(90deg, rgba(9,9,9,.7) 0%, rgba(9,9,9,0) 58%); }
+.hero-inner { padding-top: 140px; padding-bottom: clamp(56px, 8vw, 96px); display: grid; gap: 26px; }
+.hero h1 { max-width: 12.5ch; }
+.hero h1 .accent { color: var(--red-hot); }
+.hero .lead { color: #d3cdce; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-facts { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: .9rem; }
+.hero-facts li { display: inline-flex; align-items: center; gap: 8px; }
+.hero-facts .icon { color: var(--red-hot); }
+.rec { width: 8px; height: 8px; border-radius: 50%; background: var(--red-hot); box-shadow: 0 0 0 0 rgba(255,58,87,.7); animation: pulse 2.2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,58,87,.6); } 70% { box-shadow: 0 0 0 10px rgba(255,58,87,0); } 100% { box-shadow: 0 0 0 0 rgba(255,58,87,0); } }
+.scroll-cue { position: absolute; right: var(--gutter-r); bottom: 36px; display: flex; align-items: center; gap: 10px; color: var(--dim); font: 600 .7rem/1 var(--display); letter-spacing: .22em; text-transform: uppercase; writing-mode: vertical-rl; text-decoration: none; }
+.scroll-cue::after { content: ""; width: 1px; height: 54px; background: linear-gradient(var(--red), transparent); }
+@media (max-width: 760px) { .scroll-cue { display: none; } }
+
+/* ---------- revelação ao rolar (parte de um estado visível) ---------- */
+.reveal { transition: transform .9s var(--ease), opacity .9s var(--ease); }
+.js .reveal.pending { transform: translateY(26px); opacity: .35; }
+
+/* ---------- conheça o aplicativo ---------- */
+.feat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 980px) { .feat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .feat-grid { grid-template-columns: 1fr; } }
+.feat { position: relative; display: grid; gap: 14px; align-content: start; padding: 26px; border-radius: var(--r-lg); background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); border: 1px solid var(--line); overflow: hidden; transition: transform .5s var(--ease), border-color .4s, background .4s; min-width: 0; }
+.feat::before { content: ""; position: absolute; inset: auto -30% -60% -30%; height: 80%; background: radial-gradient(closest-side, rgba(227,24,55,.28), transparent); opacity: 0; transition: opacity .5s; pointer-events: none; }
+.feat:hover { transform: translateY(-6px); border-color: rgba(227,24,55,.45); }
+.feat:hover::before { opacity: 1; }
+.feat-art { height: 132px; border-radius: var(--r-md); position: relative; overflow: hidden; display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 120%, rgba(227,24,55,.38), transparent 60%), linear-gradient(160deg, #1c1415, #0e0d0d); border: 1px solid rgba(255,255,255,.05); }
+.feat-art::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 4px); }
+.feat-art .icon { width: 56px; height: 56px; stroke-width: 1.3; color: var(--paper); filter: drop-shadow(0 0 18px rgba(255,58,87,.7)); transition: transform .6s var(--ease); }
+.feat:hover .feat-art .icon { transform: scale(1.08) translateY(-3px); }
+.feat-art .bars { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; gap: 5px; }
+.feat-art .bars span { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.1); }
+.feat-art .bars span:nth-child(2) { background: var(--red); }
+.feat p { color: var(--muted); font-size: .96rem; }
+
+/* ---------- experiência / mockups ---------- */
+.exp { overflow: hidden; background: linear-gradient(180deg, var(--ink), #0d0b0b 50%, var(--ink)); }
+.filmstrip { position: absolute; left: 0; right: 0; height: 26px; opacity: .45; background:
+  radial-gradient(circle at 50% 50%, var(--ink) 0 4.2px, transparent 4.8px) 0 0/22px 26px repeat-x, var(--graphite); }
+.filmstrip.top { top: 0; } .filmstrip.bottom { bottom: 0; }
+.exp-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(30px, 5vw, 72px); align-items: center; }
+@media (max-width: 960px) { .exp-grid { grid-template-columns: 1fr; } }
+.exp-list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+.exp-list li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; padding: 16px 18px; border-radius: var(--r-md); border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+.exp-list .icon { color: var(--red-hot); margin-top: 3px; }
+.exp-list strong { font-family: var(--display); display: block; margin-bottom: 2px; }
+.exp-list span { color: var(--muted); font-size: .94rem; }
+.stage { position: relative; perspective: 1700px; min-height: 460px; display: grid; place-items: center; }
+.stage-floor { position: absolute; left: 6%; right: 6%; bottom: 8%; height: 40%; background: radial-gradient(50% 40% at 50% 60%, rgba(227,24,55,.32), transparent 70%); filter: blur(10px); }
+.dev { position: absolute; transform-style: preserve-3d; transition: transform 1.2s var(--ease); }
+.dev-screen { position: relative; overflow: hidden; background: #0b0b0c; }
+.tv { width: min(92%, 640px); top: 6%; transform: rotateY(var(--ry, -10deg)) rotateX(4deg); }
+.tv .bezel { padding: 10px; border-radius: 14px; background: linear-gradient(145deg, #2b2a2b, #0f0f10); box-shadow: 0 50px 90px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.06), 0 0 80px -20px rgba(227,24,55,.45); }
+.tv .dev-screen { aspect-ratio: 16 / 9; border-radius: 6px; }
+.tv .foot { width: 34%; height: 46px; margin: 0 auto; background: linear-gradient(#1a1a1b, #0b0b0b); clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); }
+.tablet { width: min(40%, 270px); right: 0; bottom: 4%; transform: rotateY(var(--ry2, -18deg)) rotateZ(2deg) translateZ(80px); }
+.tablet .bezel { padding: 9px; border-radius: 20px; background: linear-gradient(145deg, #333, #121212); box-shadow: 0 40px 70px -24px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08); }
+.tablet .dev-screen { aspect-ratio: 4 / 3; border-radius: 12px; }
+.phone { width: min(22%, 140px); left: 2%; bottom: 2%; transform: rotateY(var(--ry3, 16deg)) rotateZ(-4deg) translateZ(120px); }
+.phone .bezel { padding: 7px; border-radius: 24px; background: linear-gradient(145deg, #333, #111); box-shadow: 0 40px 60px -20px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08); }
+.phone .dev-screen { aspect-ratio: 9 / 19; border-radius: 18px; }
+.stage.settled .tv { --ry: -3deg; } .stage.settled .tablet { --ry2: -10deg; } .stage.settled .phone { --ry3: 8deg; }
+@media (max-width: 600px) { .stage { min-height: 330px; } .tv { top: 4%; } .tablet { width: 44%; } .phone { width: 26%; } }
+.exp-caption { margin-top: 18px; color: var(--dim); font-size: .82rem; display: flex; gap: 8px; align-items: center; }
+
+/* interface demonstrativa dentro das telas */
+.ui { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 1.1em; padding: 1.4em 1.6em 0; font-size: var(--fs, 9px); font-family: var(--display); color: var(--paper); }
+.ui-top { display: flex; flex: none; align-items: center; gap: 1.6em; font-weight: 700; }
+.ui-top .m { width: 1.7em; height: 1.25em; border: .2em solid var(--red); border-radius: .3em; }
+.ui-top span { opacity: .55; } .ui-top span.on { opacity: 1; }
+.ui-hero { position: relative; flex: none; border-radius: .6em; aspect-ratio: 16/5; overflow: hidden; font-size: var(--fs, 9px); background: linear-gradient(110deg, #2a070d 0%, #a3122a 38%, #ff9b6e 56%, #3b0a12 82%); }
+.ui-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.65), transparent 70%); }
+.ui-hero b { position: absolute; left: 6%; bottom: 18%; z-index: 1; font-size: 1.5em; letter-spacing: -.02em; }
+.ui-hero i { position: absolute; left: 6%; bottom: 8%; z-index: 1; font-style: normal; font-size: .8em; opacity: .7; font-family: var(--body); }
+.ui-row { display: grid; gap: .7em; align-content: start; }
+.ui-row > em { font-style: normal; font-weight: 700; opacity: .8; }
+.ui-tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6em; }
+.ui-tiles > div { aspect-ratio: 16/10; border-radius: .4em; background: var(--g); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+.ui-tiles.poster > div { aspect-ratio: 2/3; }
+.ui-tiles > div.focus { outline: .18em solid var(--paper); outline-offset: .12em; }
+
+/* ---------- como funciona ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; position: relative; }
+.steps::before { content: ""; position: absolute; left: 0; right: 0; top: 34px; height: 1px; background: var(--line); }
+.steps::after { content: ""; position: absolute; left: 0; top: 34px; height: 1px; width: var(--fill, 0%); background: linear-gradient(90deg, var(--red), var(--red-hot)); transition: width 1.6s var(--ease); box-shadow: 0 0 12px rgba(255,58,87,.8); }
+.step { position: relative; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.step-num { width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); border: 1px solid var(--line); font: 800 1.35rem/1 var(--display); color: var(--paper); position: relative; z-index: 1; transition: border-color .5s, box-shadow .5s; }
+.step.lit .step-num { border-color: var(--red); box-shadow: 0 0 30px -6px rgba(227,24,55,.8); }
+.step .icon { color: var(--red-hot); width: 22px; height: 22px; }
+.step p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr; gap: 26px; }
+  .steps::before, .steps::after { left: 34px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+  .steps::after { height: var(--fill, 0%); bottom: auto; }
+  .step { grid-template-columns: 68px 1fr; column-gap: 18px; }
+  .step-num { grid-row: span 3; }
+}
+.notice { margin-top: 34px; display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r-md); border: 1px solid rgba(255,200,87,.25); background: rgba(255,200,87,.05); color: #eadfc6; font-size: .94rem; }
+.notice .icon { color: var(--warn); margin-top: 2px; }
+
+/* ---------- planos (ingressos) ---------- */
+.plans-sec { background: radial-gradient(70% 50% at 50% 0%, rgba(227,24,55,.12), transparent 70%), var(--ink); }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 22px; }
+.ticket { --notch: 14px; position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 210px; border-radius: var(--r-lg); background: linear-gradient(160deg, #1d1b1c, #131213); border: 1px solid var(--line); transition: transform .5s var(--ease), box-shadow .5s, border-color .4s; min-width: 0; }
+.ticket:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+.ticket.hi { border-color: rgba(227,24,55,.6); box-shadow: 0 0 0 1px rgba(227,24,55,.25), 0 30px 80px -30px rgba(227,24,55,.55); }
+.ticket.hi::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--a, 0deg), transparent 0 70%, var(--red-hot) 82%, transparent 92%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin 6s linear infinite; pointer-events: none; }
+@property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes spin { to { --a: 360deg; } }
+.t-main { padding: 28px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.t-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: space-between; }
+.t-kicker { font: 700 .7rem/1 var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+.t-badge { font: 700 .72rem/1 var(--display); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px; border-radius: 999px; background: var(--red); color: var(--paper); }
+.t-badge.demo { background: rgba(255,200,87,.12); color: var(--warn); border: 1px solid rgba(255,200,87,.35); }
+.t-main h3 { font-size: 1.6rem; letter-spacing: -.02em; }
+.t-desc { color: var(--muted); font-size: .96rem; }
+.t-feats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 9px; }
+.t-feats li { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
+.t-feats .icon { color: var(--red-hot); margin-top: 3px; width: 1.05em; height: 1.05em; }
+.t-limits { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: .88rem; border-top: 1px dashed var(--line); padding-top: 14px; margin-top: 4px; }
+.t-stub { position: relative; padding: 28px 24px; display: grid; gap: 14px; align-content: space-between; border-left: 2px dashed rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(227,24,55,.08), transparent 70%); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
+.t-stub::before, .t-stub::after { content: ""; position: absolute; left: calc(var(--notch) * -1 - 1px); width: calc(var(--notch) * 2); height: calc(var(--notch) * 2); border-radius: 50%; background: var(--ink); border: 1px solid var(--line); }
+.t-stub::before { top: calc(var(--notch) * -1 - 1px); clip-path: inset(50% 0 0 0); }
+.t-stub::after { bottom: calc(var(--notch) * -1 - 1px); clip-path: inset(0 0 50% 0); }
+.ticket.hi .t-stub::before, .ticket.hi .t-stub::after { border-color: rgba(227,24,55,.6); }
+.t-price { display: grid; gap: 4px; }
+.t-price small { color: var(--dim); font: 600 .72rem/1 var(--display); letter-spacing: .16em; text-transform: uppercase; }
+.t-price strong { font: 800 2.3rem/1 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.t-price strong.tbd { font-size: 1.3rem; color: var(--muted); }
+.t-price span { color: var(--muted); font-size: .84rem; }
+.t-meta { display: grid; gap: 6px; font-size: .84rem; color: var(--muted); }
+.t-meta div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: 6px; }
+.t-meta b { color: var(--paper); font-weight: 600; font-variant-numeric: tabular-nums; }
+.t-stub .btn { width: 100%; }
+@media (max-width: 640px) {
+  .ticket { grid-template-columns: 1fr; }
+  .t-stub { border-left: 0; border-top: 2px dashed rgba(255,255,255,.12); border-radius: 0 0 var(--r-lg) var(--r-lg); }
+  .t-stub::before { left: calc(var(--notch) * -1 - 1px); top: calc(var(--notch) * -1 - 1px); clip-path: inset(0 0 0 50%); }
+  .t-stub::after { left: auto; right: calc(var(--notch) * -1 - 1px); top: calc(var(--notch) * -1 - 1px); bottom: auto; clip-path: inset(0 50% 0 0); }
+}
+.empty { padding: 36px; border-radius: var(--r-lg); border: 1px dashed var(--line); color: var(--muted); display: grid; gap: 10px; justify-items: start; }
+.plans-foot { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px 26px; color: var(--muted); font-size: .9rem; }
+.plans-foot span { display: inline-flex; gap: 8px; align-items: center; }
+.plans-foot .icon { color: var(--red-hot); }
+
+/* ---------- compatibilidade ---------- */
+.compat { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 14px; }
+.compat-item { display: grid; gap: 10px; padding: 22px; border-radius: var(--r-md); border: 1px solid var(--line); background: rgba(255,255,255,.02); }
+.compat-item .icon { width: 34px; height: 34px; color: var(--paper); stroke-width: 1.4; }
+.compat-item p { color: var(--muted); font-size: .9rem; }
+
+/* ---------- suporte ---------- */
+.support-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.sup { grid-column: span 2; display: grid; gap: 12px; align-content: start; padding: 24px; border-radius: var(--r-lg); background: var(--graphite); border: 1px solid var(--line); min-width: 0; }
+.sup.wide { grid-column: span 3; }
+.sup .icon { width: 26px; height: 26px; color: var(--red-hot); }
+.sup p { color: var(--muted); font-size: .95rem; }
+.sup .contact-lines { display: grid; gap: 8px; }
+.sup .contact-lines a, .sup .contact-lines span { display: inline-flex; gap: 8px; align-items: center; font-weight: 600; text-decoration: none; word-break: break-word; }
+.sup .contact-lines a:hover { color: var(--red-hot); }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--paper); font-weight: 600; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; cursor: pointer; justify-self: start; }
+@media (max-width: 900px) { .sup, .sup.wide { grid-column: span 3; } }
+@media (max-width: 600px) { .support-grid { grid-template-columns: 1fr; } .sup, .sup.wide { grid-column: auto; } }
+
+/* ---------- FAQ ---------- */
+.faq-wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(30px, 5vw, 80px); align-items: start; }
+@media (max-width: 900px) { .faq-wrap { grid-template-columns: 1fr; } }
+.faq-wrap .sec-head { position: sticky; top: 110px; margin-bottom: 0; }
+@media (max-width: 900px) { .faq-wrap .sec-head { position: static; } }
+.faq { display: grid; gap: 10px; }
+.faq details { border: 1px solid var(--line); border-radius: var(--r-md); background: rgba(255,255,255,.02); transition: border-color .3s, background .3s; }
+.faq details[open] { border-color: rgba(227,24,55,.45); background: rgba(227,24,55,.04); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 20px 22px; font: 700 1.04rem/1.35 var(--display); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { width: 28px; height: 28px; flex: none; border-radius: 50%; border: 1px solid var(--line); position: relative; transition: transform .35s var(--ease), border-color .3s; }
+.faq summary .pm::before, .faq summary .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.6px; background: var(--paper); transform: translate(-50%, -50%); }
+.faq summary .pm::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .35s var(--ease); }
+.faq details[open] .pm { border-color: var(--red); transform: rotate(180deg); }
+.faq details[open] .pm::after { transform: translate(-50%, -50%) rotate(0deg); }
+.faq .ans { padding: 0 22px 22px; color: var(--muted); max-width: 66ch; white-space: pre-line; }
+
+/* ---------- CTA final ---------- */
+.final { padding-block: clamp(90px, 12vw, 160px); position: relative; overflow: hidden; text-align: left; }
+.final::before { content: ""; position: absolute; left: 50%; top: 0; width: min(1100px, 120%); aspect-ratio: 2.4; transform: translate(-50%, -30%); background: radial-gradient(50% 50% at 50% 50%, rgba(227,24,55,.35), transparent 70%); filter: blur(20px); pointer-events: none; }
+.final .wrap { position: relative; display: grid; gap: 26px; justify-items: start; }
+.final h2 { font-size: clamp(2.2rem, 5.4vw, 4.4rem); max-width: 16ch; }
+
+/* ---------- rodapé ---------- */
+.ftr { border-top: 1px solid var(--line); background: #0b0a0a; padding-block: 56px 36px; color: var(--muted); font-size: .92rem; }
+.ftr-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 36px; }
+@media (max-width: 860px) { .ftr-grid { grid-template-columns: 1fr; } }
+.ftr h3 { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--paper); margin-bottom: 14px; }
+.ftr ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ftr .linkbtn { color: var(--muted); text-decoration: none; font-weight: 500; }
+.ftr .linkbtn:hover { color: var(--paper); }
+.ftr-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-size: .84rem; color: var(--dim); }
+
+/* ---------- diálogos ---------- */
+dialog { border: 0; padding: 0; background: transparent; color: var(--paper); max-width: min(620px, calc(100vw - 24px)); width: 100%; max-height: calc(100dvh - 24px); }
+dialog::backdrop { background: rgba(5,5,5,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+dialog[open] .dlg { animation: dlg-in .45s var(--ease); }
+@keyframes dlg-in { from { transform: translateY(24px) scale(.98); opacity: 0; } }
+.dlg { background: #141313; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: auto; max-height: calc(100dvh - 24px); box-shadow: 0 40px 120px -30px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.03); }
+.dlg-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 22px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: #141313; z-index: 1; }
+.dlg-head h2 { font-size: 1.25rem; letter-spacing: -.01em; }
+.x { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; display: grid; place-items: center; }
+.x:hover { background: rgba(255,255,255,.06); }
+.dlg-body { padding: 22px; display: grid; gap: 20px; }
+.summary { border-radius: var(--r-md); border: 1px solid var(--line); overflow: hidden; }
+.summary-top { padding: 18px; display: grid; gap: 6px; background: linear-gradient(120deg, rgba(227,24,55,.18), transparent 70%); border-bottom: 2px dashed rgba(255,255,255,.1); }
+.summary-top h3 { font-size: 1.3rem; }
+.summary dl { margin: 0; padding: 14px 18px; display: grid; gap: 8px; font-size: .92rem; }
+.summary dl div { display: flex; justify-content: space-between; gap: 16px; }
+.summary dt { color: var(--muted); }
+.summary dd { margin: 0; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.summary .total { padding: 14px 18px; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); }
+.summary .total strong { font: 800 1.7rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.conds { font-size: .86rem; color: var(--muted); display: grid; gap: 8px; }
+.conds li { margin-left: 18px; }
+.form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label { font: 600 .86rem/1.2 var(--body); }
+.field label small { color: var(--dim); font-weight: 400; }
+.field input { width: 100%; min-height: 50px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); background: #0d0c0c; color: var(--paper); font: 400 1rem var(--body); transition: border-color .2s, box-shadow .2s; }
+.field input:focus { outline: none; border-color: var(--red-hot); box-shadow: 0 0 0 3px rgba(255,58,87,.22); }
+.field input[aria-invalid="true"] { border-color: var(--red-hot); }
+.err { color: #ff8095; font-size: .82rem; min-height: 0; }
+.check { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: .9rem; color: #ddd6d7; }
+.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--red); }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-msg { padding: 12px 14px; border-radius: 12px; font-size: .9rem; border: 1px solid rgba(255,58,87,.4); background: rgba(255,58,87,.08); color: #ffd0d7; }
+.form-msg.info { border-color: rgba(255,200,87,.35); background: rgba(255,200,87,.06); color: #eadfc6; }
+.secure { display: flex; gap: 8px; align-items: center; font-size: .82rem; color: var(--dim); }
+.spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35); border-top-color: var(--paper); animation: rot .8s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+.legal-text { white-space: pre-line; color: #ddd6d7; font-size: .95rem; max-width: 70ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .js .reveal.pending { transform: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 20.5h8M12 16.5v4"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 7.5h4M3 12h4M3 16.5h4M17 7.5h4M17 12h4M17 16.5h4"/></symbol>
+  <symbol id="i-series" viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="11" rx="2"/><path d="M7 3.5h12a2 2 0 0 1 2 2V14M10 9.5v4l3.2-2z"/></symbol>
+  <symbol id="i-remote" viewBox="0 0 24 24"><rect x="7.5" y="2.5" width="9" height="19" rx="4.5"/><circle cx="12" cy="8" r="2"/><path d="M10.5 13h.01M13.5 13h.01M10.5 16h.01M13.5 16h.01"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 24 24"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="5.5" height="12" rx="1.3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5 10.5-10.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-tablet" viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 13h.01M17 13h-4M8 9l2-4M16 9l-2-4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 18.5l1.2-3.6A7.8 7.8 0 1 1 8.6 18z"/><path d="M9 10.5h.01M12 10.5h.01M15 10.5h.01"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.6 2.6 0 0 1 5 1c0 1.8-2.6 2.3-2.6 4M12 17.5h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.3 2.3 4.2-4.4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-group" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5"/><path d="M15.5 5.6a3 3 0 0 1 0 5.8M17.5 14.6c1.8.5 3 2 3.4 4.4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4M9 12h6M9 15.5h6"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.5h19M6 15h4"/></symbol>
+  <symbol id="i-pix" viewBox="0 0 24 24"><path d="M12 2.8l3.6 3.6-3.6 3.6-3.6-3.6zM12 14l3.6 3.6-3.6 3.6-3.6-3.6zM2.8 12l3.6-3.6L10 12l-3.6 3.6zM14 12l3.6-3.6 3.6 3.6-3.6 3.6z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.5h.01"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></symbol>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="preview-bar" id="preview-bar" hidden>
+    <div class="wrap"><svg class="icon"><use href="#i-alert"/></svg><span id="preview-text">Pré-visualização com conteúdo demonstrativo. Compras desativadas.</span></div>
+  </div>
+  <div class="wrap hdr-in">
+    <a class="logo" href="#inicio" aria-label="Início"><span class="logo-mark" aria-hidden="true"></span><span data-brand>IPTV</span></a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#inicio">Início</a>
+      <a href="#aplicativo">Conheça o aplicativo</a>
+      <a href="#recursos">Conteúdos e recursos</a>
+      <a href="#compatibilidade">Compatibilidade</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas frequentes</a>
+      <a class="btn primary nav-cta" href="#planos">Adquirir acesso</a>
+    </nav>
+    <a class="btn primary sm hdr-cta" href="#planos">Adquirir acesso</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menu"><svg class="icon"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+
+<main id="conteudo">
+  <!-- 1. HERO -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="hero-fallback" aria-hidden="true"></div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow hero-anim"><span class="rec" aria-hidden="true"></span><span data-bind="tagline">Entretenimento na sua tela</span></p>
+      <h1 id="hero-title" class="hero-anim" data-bind="hero.title">Seu próximo entretenimento começa aqui.</h1>
+      <p class="lead hero-anim" data-bind="hero.subtitle">Conheça uma nova forma de aproveitar seu entretenimento em dispositivos compatíveis, com acesso conforme o plano contratado.</p>
+      <div class="cta-row hero-anim">
+        <a class="btn ghost" href="#aplicativo"><svg class="icon"><use href="#i-play"/></svg>Conhecer o aplicativo</a>
+        <a class="btn primary" href="#planos">Adquirir acesso<svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="hero-facts hero-anim" aria-label="Como funciona a compra">
+        <li><svg class="icon"><use href="#i-pix"/></svg><span id="fact-methods">Pix ou cartão pelo PagBank</span></li>
+        <li><svg class="icon"><use href="#i-mail"/></svg>Instruções liberadas após a confirmação</li>
+        <li><svg class="icon"><use href="#i-chat"/></svg>Suporte pelo canal oficial</li>
+      </ul>
+    </div>
+    <a class="scroll-cue" href="#aplicativo" aria-label="Rolar para o conteúdo">Role</a>
+  </section>
+
+  <!-- 2. CONHEÇA O APLICATIVO -->
+  <section class="sec" id="aplicativo" aria-labelledby="app-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Conheça o aplicativo</span>
+        <h2 id="app-title">O que você adquire</h2>
+        <p class="lead">Acesso ao aplicativo pelo período e nas condições do plano escolhido. Tudo o que está incluído aparece de forma clara antes do pagamento.</p>
+        <span class="tag warn" id="provisional-tag" hidden><svg class="icon"><use href="#i-alert"/></svg>Conteúdo provisório em revisão pelo responsável</span>
+      </div>
+      <div class="feat-grid" id="features"></div>
+    </div>
+  </section>
+
+  <!-- 3. EXPERIÊNCIA -->
+  <section class="sec exp" id="recursos" aria-labelledby="exp-title">
+    <div class="filmstrip top" aria-hidden="true"></div>
+    <div class="wrap exp-grid">
+      <div class="reveal">
+        <span class="eyebrow">Conteúdos e recursos</span>
+        <h2 id="exp-title" style="margin-top:18px">Uma tela de cinema onde você estiver</h2>
+        <p class="lead" style="margin-top:18px">Navegue pelo aplicativo com uma interface organizada em categorias, pensada para a tela grande e para o uso no dia a dia.</p>
+        <ul class="exp-list">
+          <li><svg class="icon"><use href="#i-tv"/></svg><div><strong>Na tela grande</strong><span>Acesse pelo aparelho da sala, conforme a compatibilidade confirmada.</span></div></li>
+          <li><svg class="icon"><use href="#i-remote"/></svg><div><strong>Navegação simples</strong><span>Categorias para encontrar canais, filmes e séries do seu plano.</span></div></li>
+          <li><svg class="icon"><use href="#i-doc"/></svg><div><strong>Condições transparentes</strong><span>Validade e limites de uso informados em cada plano.</span></div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="stage" id="stage" aria-label="Ilustração da interface em TV, tablet e celular" role="img">
+          <div class="stage-floor"></div>
+          <div class="dev tv"><div class="bezel"><div class="dev-screen" data-ui="tv" style="--fs:11px"></div></div><div class="foot"></div></div>
+          <div class="dev tablet"><div class="bezel"><div class="dev-screen" data-ui="tablet" style="--fs:6px"></div></div></div>
+          <div class="dev phone"><div class="bezel"><div class="dev-screen" data-ui="phone" style="--fs:5px"></div></div></div>
+        </div>
+        <p class="exp-caption"><svg class="icon"><use href="#i-alert"/></svg>Interface ilustrativa. Os aparelhos compatíveis estão listados na seção Compatibilidade.</p>
+      </div>
+    </div>
+    <div class="filmstrip bottom" aria-hidden="true"></div>
+  </section>
+
+  <!-- 4. COMO FUNCIONA -->
+  <section class="sec" id="como-funciona" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Como funciona</span>
+        <h2 id="how-title">Da escolha do plano ao play</h2>
+      </div>
+      <ol class="steps" id="steps">
+        <li class="step"><span class="step-num">01</span><h3>Escolha seu plano</h3><p>Compare validade, limites de uso e o que está incluído, e selecione a opção desejada.</p></li>
+        <li class="step"><span class="step-num">02</span><h3>Realize o pagamento</h3><p>Você é direcionado ao checkout seguro do PagBank para pagar com <span data-methods-text>Pix ou cartão</span>.</p></li>
+        <li class="step"><span class="step-num">03</span><h3>Receba as instruções</h3><p>Após a confirmação do pagamento pelo PagBank, as próximas etapas aparecem na página do seu pedido<span data-email-only hidden> e chegam no seu e-mail</span>.</p></li>
+        <li class="step"><span class="step-num">04</span><h3>Instale e aproveite</h3><p>Siga as orientações de ativação e, se quiser, entre no grupo oficial de clientes para suporte.</p></li>
+      </ol>
+      <p class="notice reveal"><svg class="icon"><use href="#i-alert"/></svg><span>O acesso depende da confirmação do pagamento pelo PagBank e das orientações de ativação do serviço. Pagamentos com cartão podem passar por análise antes da confirmação.</span></p>
+    </div>
+  </section>
+
+  <!-- 5. PLANOS -->
+  <section class="sec plans-sec" id="planos" aria-labelledby="plans-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Planos</span>
+        <h2 id="plans-title">Escolha seu ingresso</h2>
+        <p class="lead">Pagamento único, sem renovação automática. Ao fim da validade, você escolhe se quer um novo plano.</p>
+      </div>
+      <div class="plans" id="plans" aria-live="polite">
+        <div class="empty"><span class="spinner" aria-hidden="true"></span>Carregando planos…</div>
+      </div>
+      <div class="plans-foot">
+        <span><svg class="icon"><use href="#i-lock"/></svg>Pagamento processado pelo PagBank</span>
+        <span><svg class="icon"><use href="#i-shield"/></svg>Seus dados de cartão não passam pelo nosso site</span>
+        <span><svg class="icon"><use href="#i-mail"/></svg>Instruções liberadas na página do pedido</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. COMPATIBILIDADE -->
+  <section class="sec" id="compatibilidade" aria-labelledby="compat-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Compatibilidade</span>
+        <h2 id="compat-title">Aparelhos confirmados</h2>
+        <p class="lead" data-bind="compatibility_note">Antes de comprar, confirme se o seu aparelho é compatível. Em caso de dúvida, fale com o suporte.</p>
+      </div>
+      <div class="compat" id="compat"></div>
+    </div>
+  </section>
+
+  <!-- 7. SUPORTE -->
+  <section class="sec" id="suporte" aria-labelledby="sup-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Confiança e suporte</span>
+        <h2 id="sup-title">Você não fica sozinho depois da compra</h2>
+      </div>
+      <div class="support-grid">
+        <article class="sup"><svg class="icon"><use href="#i-mail"/></svg><h3>Instruções após a compra</h3><p>Assim que o PagBank confirma o pagamento, as próximas etapas aparecem na página do seu pedido<span data-email-only hidden> e são enviadas para o e-mail informado</span>.</p></article>
+        <article class="sup"><svg class="icon"><use href="#i-help"/></svg><h3>Ajuda na instalação</h3><p data-bind="support.how_to_get_help">Responda o e-mail de confirmação ou use o canal oficial de suporte informado nesta página.</p></article>
+        <article class="sup"><svg class="icon"><use href="#i-chat"/></svg><h3>Fale com o responsável</h3><div class="contact-lines" id="contact-lines"><p>Canal de suporte em configuração.</p></div></article>
+        <article class="sup wide"><svg class="icon"><use href="#i-group"/></svg><h3>Grupo de clientes</h3><p>O link oficial do grupo aparece na página do pedido, somente para quem concluiu a compra.</p></article>
+        <article class="sup wide"><svg class="icon"><use href="#i-doc"/></svg><h3>Condições do plano</h3><p>Validade, limites e itens incluídos aparecem no resumo antes do pagamento e nas condições comerciais.</p><button class="linkbtn" type="button" data-legal="commercial">Ler condições comerciais</button></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="sec" id="duvidas" aria-labelledby="faq-title" style="padding-top:0">
+    <div class="wrap faq-wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2 id="faq-title">Antes de apertar o play</h2>
+        <p class="lead">Não encontrou o que procurava? Fale com o suporte pelo canal oficial.</p>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <!-- 9. CTA FINAL -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap">
+      <span class="eyebrow">Sessão aberta</span>
+      <h2 id="final-title">Pronto para conhecer uma nova experiência de entretenimento?</h2>
+      <a class="btn primary" href="#planos">Escolher meu plano<svg class="icon"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div style="display:grid;gap:14px;align-content:start">
+        <a class="logo" href="#inicio"><span class="logo-mark" aria-hidden="true"></span><span data-brand>IPTV</span></a>
+        <p data-bind="tagline">Entretenimento na sua tela</p>
+        <p id="company-line"></p>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <ul id="footer-contact"><li>Canal de suporte em configuração.</li></ul>
+      </div>
+      <div>
+        <h3>Informações</h3>
+        <ul>
+          <li><button class="linkbtn" type="button" data-legal="privacy">Política de privacidade</button></li>
+          <li><button class="linkbtn" type="button" data-legal="terms">Termos de uso</button></li>
+          <li><button class="linkbtn" type="button" data-legal="commercial">Condições comerciais</button></li>
+          <li><button class="linkbtn" type="button" data-legal="refund">Política de cancelamento e reembolso</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© <span id="year"></span> <span data-brand>IPTV</span>. Todos os direitos reservados.</span>
+      <span>Pagamentos processados pelo PagBank. Este site usa apenas cookies essenciais.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHECKOUT -->
+<dialog id="checkout" aria-labelledby="co-title">
+  <div class="dlg">
+    <div class="dlg-head"><h2 id="co-title">Resumo da compra</h2><button class="x" type="button" data-close aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <div class="dlg-body">
+      <div class="summary">
+        <div class="summary-top"><span class="t-kicker">Plano selecionado</span><h3 id="co-plan">—</h3><p class="t-desc" id="co-desc"></p></div>
+        <dl id="co-dl"></dl>
+        <div class="total"><span>Total</span><strong id="co-total">—</strong></div>
+      </div>
+      <ul class="conds">
+        <li>Pagamento único, sem renovação automática.</li>
+        <li>As instruções são liberadas na página do seu pedido<span data-email-only hidden> e enviadas ao seu e-mail</span> após a confirmação do pagamento pelo PagBank.</li>
+        <li>Verifique a compatibilidade do seu aparelho antes de concluir.</li>
+      </ul>
+      <form class="form" id="co-form" novalidate>
+        <div class="field"><label for="co-name">Nome completo</label><input id="co-name" name="name" autocomplete="name" required maxlength="120"><span class="err" id="err-name"></span></div>
+        <div class="field"><label for="co-email">E-mail</label><input id="co-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254"><span class="err" id="err-email"></span></div>
+        <div class="field"><label for="co-phone">Telefone com DDD <small id="co-phone-hint">(opcional)</small></label><input id="co-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="(11) 90000-0000"><span class="err" id="err-phone"></span></div>
+        <div class="hp" aria-hidden="true"><label for="co-website">Não preencha</label><input id="co-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="check"><input type="checkbox" id="co-terms" name="accept_terms"><span>Li e aceito os <button class="linkbtn" type="button" data-legal="terms">Termos de uso</button>, as <button class="linkbtn" type="button" data-legal="commercial">Condições comerciais</button> e a <button class="linkbtn" type="button" data-legal="refund">Política de cancelamento e reembolso</button>.</span></label>
+        <span class="err" id="err-accept_terms"></span>
+        <p class="form-msg" id="co-msg" role="alert" hidden></p>
+        <button class="btn primary" type="submit" id="co-submit"><svg class="icon"><use href="#i-lock"/></svg>Ir para o pagamento seguro</button>
+        <p class="secure"><svg class="icon"><use href="#i-shield"/></svg><span id="co-secure">Você será direcionado ao Checkout PagBank. Não armazenamos dados de cartão.</span></p>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- TEXTOS LEGAIS -->
+<dialog id="legal" aria-labelledby="legal-title">
+  <div class="dlg">
+    <div class="dlg-head"><h2 id="legal-title">—</h2><button class="x" type="button" data-close aria-label="Fechar"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <div class="dlg-body"><p class="legal-text" id="legal-body"></p></div>
+  </div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+<script>
+/* Conteúdo padrão usado somente quando a API não está disponível (pré-visualização local).
+   Mantido em sincronia com netlify/lib/defaults.mjs pelo teste automatizado. */
+window.__FALLBACK_SITE__ = /*DEFAULTS-START*/{"is_configured":false,"brand_name":"IPTV","tagline":"Entretenimento na sua tela","hero":{"title":"Seu próximo entretenimento começa aqui.","subtitle":"Conheça uma nova forma de aproveitar seu entretenimento em dispositivos compatíveis, com acesso conforme o plano contratado."},"features":[{"icon":"tv","title":"Canais de TV","text":"Acesso aos canais incluídos no plano contratado. A grade disponível é informada pelo responsável pelo serviço."},{"icon":"film","title":"Filmes","text":"Títulos do catálogo licenciado disponível para o seu plano."},{"icon":"series","title":"Séries","text":"Temporadas e episódios conforme o catálogo licenciado do plano."},{"icon":"remote","title":"Navegação pelo aplicativo","text":"Interface organizada para encontrar o que assistir com poucos cliques."},{"icon":"devices","title":"Compatibilidade","text":"Confira a lista de aparelhos confirmados antes de comprar."},{"icon":"check","title":"Recursos do plano","text":"Cada plano informa validade, limites de uso e o que está incluído antes do pagamento."}],"compatibility":[],"compatibility_note":"Antes de comprar, confirme se o seu aparelho é compatível. Em caso de dúvida, fale com o suporte.","support":{"channel_label":"","whatsapp":"","email":"","hours":"","how_to_get_help":"Fale com o suporte pelo canal oficial informado nesta página, com o número do seu pedido em mãos."},"faq":[{"q":"O que estou adquirindo?","a":"Você adquire acesso ao aplicativo pelo período e nas condições do plano escolhido. Validade, limites de uso e itens incluídos aparecem no resumo antes do pagamento."},{"q":"Como funciona a liberação do acesso?","a":"Quando o PagBank confirma o pagamento, as próximas etapas são liberadas automaticamente na página do seu pedido, que abre logo depois do pagamento. Se alguma etapa depender da nossa equipe, isso estará indicado ali."},{"q":"Como recebo as instruções de instalação?","a":"Na página do seu pedido, logo após a confirmação do pagamento. Guarde esse link: ele é pessoal. Quando o envio por e-mail estiver ativo, você também recebe uma cópia no e-mail informado (confira spam e promoções)."},{"q":"Quais dispositivos são compatíveis?","a":"Consulte a seção Compatibilidade desta página. Se o seu aparelho não estiver listado, fale com o suporte antes de comprar."},{"q":"Como funciona o suporte?","a":"Pelo canal oficial informado na seção Suporte e na página do seu pedido."},{"q":"O que acontece se o pagamento demorar para ser confirmado?","a":"O Pix costuma ser confirmado em instantes; pagamentos com cartão podem passar por análise do PagBank. As instruções só são liberadas após a confirmação, e você acompanha tudo na página do pedido."},{"q":"Como funciona a renovação?","a":"Não há cobrança automática. Ao fim da validade, basta adquirir um novo plano."},{"q":"Quais são as condições de cancelamento e reembolso?","a":"Consulte a Política de cancelamento e reembolso no rodapé. Compras on-line contam com o direito de arrependimento previsto no Código de Defesa do Consumidor."},{"q":"Como posso entrar no grupo de clientes?","a":"O link oficial do grupo aparece na página do seu pedido depois que o pagamento é confirmado."}],"company":{"legal_name":"","document":"","address":"","contact_email":""},"legal":{"privacy":"POLÍTICA DE PRIVACIDADE\n\n1. Quem trata os dados\nO responsável pelo serviço identificado no rodapé deste site é o controlador dos dados pessoais, nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018).\n\n2. Dados coletados\nNa compra: nome, e-mail e, se você informar, telefone. Também registramos o plano escolhido, o valor, o status do pagamento e um identificador técnico do seu acesso ao site (o endereço IP é guardado apenas de forma anonimizada, para segurança). Dados de cartão não passam por este site: são informados diretamente ao PagBank.\n\n3. Finalidades\nProcessar o pedido e o pagamento, liberar e enviar as instruções de acesso, prestar suporte, prevenir fraudes e cumprir obrigações legais.\n\n4. Compartilhamento\nCom o PagBank, para processar o pagamento; com provedores de hospedagem e de envio de mensagens, apenas para operar o serviço; e com autoridades, quando exigido por lei. Não vendemos dados pessoais.\n\n5. Armazenamento e segurança\nOs dados ficam em servidores com acesso restrito e conexão criptografada, e são mantidos pelo tempo necessário às finalidades acima e aos prazos legais.\n\n6. Cookies\nUsamos apenas cookies essenciais ao funcionamento do site. Não usamos cookies de publicidade.\n\n7. Seus direitos\nVocê pode solicitar confirmação, acesso, correção, anonimização ou exclusão dos seus dados, além de informações sobre compartilhamento, pelo canal de suporte informado no site.\n\n8. Atualizações\nEsta política pode ser atualizada. A versão vigente fica sempre disponível no site.","terms":"TERMOS DE USO\n\n1. Sobre o serviço\nEste site comercializa acesso a um aplicativo de entretenimento, pelo período e nas condições do plano escolhido. O responsável pelo serviço é a empresa ou pessoa identificada no rodapé deste site.\n\n2. Aceite\nAo concluir uma compra, você declara ter lido e aceitado estes Termos, as Condições comerciais, a Política de cancelamento e reembolso e a Política de privacidade.\n\n3. Cadastro e dados\nVocê deve informar nome e e-mail corretos. As instruções de acesso dependem desses dados, e o responsável não se responsabiliza por falhas causadas por informações incorretas.\n\n4. Uso do acesso\nO acesso é pessoal e intransferível, para uso privado, respeitando os limites do plano contratado (como a quantidade de aparelhos, quando houver). É proibido revender, compartilhar publicamente, copiar ou redistribuir o acesso ou os conteúdos.\n\n5. Disponibilidade\nO serviço é oferecido nos aparelhos indicados como compatíveis. O catálogo e os canais disponíveis podem variar ao longo do tempo, conforme os direitos de exibição. Interrupções pontuais por manutenção ou fatores externos podem ocorrer.\n\n6. Suspensão\nO acesso pode ser suspenso em caso de uso em desacordo com estes Termos, fraude, contestação indevida de pagamento ou determinação legal.\n\n7. Suporte\nO atendimento é feito pelos canais informados no site e na página do pedido.\n\n8. Alterações\nEstes Termos podem ser atualizados. A versão vigente fica sempre disponível no site. Compras já realizadas seguem as condições aceitas no momento da compra.\n\n9. Legislação\nAplica-se a legislação brasileira, incluindo o Código de Defesa do Consumidor.","commercial":"CONDIÇÕES COMERCIAIS\n\n1. Planos e preços\nOs planos, preços, validade, itens incluídos e limites de uso são os exibidos no site e no resumo da compra no momento do pedido. O valor cobrado é sempre o valor do plano mostrado no resumo.\n\n2. Pagamento\nO pagamento é processado pelo PagBank, nas formas disponíveis no checkout (como Pix e cartão). Os dados de cartão são informados diretamente ao PagBank e não são armazenados por este site.\n\n3. Pagamento único, sem renovação automática\nCada compra é um pagamento único. Não há cobrança recorrente. Ao fim da validade, você pode adquirir um novo plano, se desejar.\n\n4. Confirmação e liberação\nAs instruções de acesso são liberadas somente após a confirmação do pagamento pelo PagBank. Pix costuma ser confirmado em instantes; pagamentos com cartão podem passar por análise antifraude do PagBank. Quando a ativação depender da equipe, isso será informado na página do pedido.\n\n5. Validade\nA validade do plano é a informada no resumo da compra, contada a partir da liberação do acesso.\n\n6. Compatibilidade\nAntes de comprar, verifique se o seu aparelho está na lista de compatíveis ou consulte o suporte.\n\n7. Nota e comprovante\nO comprovante do pagamento é emitido pelo PagBank. O número do pedido fica disponível na página de acompanhamento.","refund":"POLÍTICA DE CANCELAMENTO E REEMBOLSO\n\n1. Direito de arrependimento\nCompras feitas pela internet podem ser canceladas em até 7 (sete) dias corridos a partir da compra, conforme o artigo 49 do Código de Defesa do Consumidor, com devolução integral do valor pago.\n\n2. Como solicitar\nEntre em contato pelo canal de suporte informado no site, com o número do pedido (formato PD-XXXXXXXX) e o e-mail usado na compra.\n\n3. Problemas técnicos\nSe o acesso não funcionar no aparelho e o suporte não conseguir resolver, o pedido pode ser cancelado com reembolso, mesmo após o prazo de arrependimento, avaliado caso a caso.\n\n4. Como o reembolso é feito\nO estorno é feito pelo PagBank, no mesmo meio de pagamento usado na compra. Pix é devolvido para a conta de origem; no cartão, o crédito aparece na fatura conforme o prazo da operadora.\n\n5. Após o cancelamento\nCom o reembolso, o acesso relacionado ao pedido é encerrado.\n\n6. Situações sem reembolso\nFora do prazo de arrependimento e sem falha técnica comprovada, não há reembolso proporcional por tempo não utilizado, exceto quando exigido por lei."}}/*DEFAULTS-END*/;
+</script>
+
+<script>
+(() => {
+  'use strict';
+  document.documentElement.classList.add('js');
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  const METHOD_LABEL = { PIX: 'Pix', CREDIT_CARD: 'cartão de crédito', DEBIT_CARD: 'cartão de débito', BOLETO: 'boleto' };
+
+  // Cria elementos sem innerHTML (o conteúdo vem da configuração).
+  function h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === 'class') el.className = v;
+      else if (k === 'text') el.textContent = v;
+      else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+      else el.setAttribute(k, v === true ? '' : v);
+    }
+    for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid);
+    return el;
+  }
+  const icon = (name, cls = 'icon') => {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('class', cls); s.setAttribute('aria-hidden', 'true');
+    const u = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    u.setAttribute('href', `#i-${name}`); s.append(u); return s;
+  };
+  const ICONS = { tv: 'tv', film: 'film', series: 'series', remote: 'remote', devices: 'devices', check: 'check', phone: 'phone', tablet: 'tablet', box: 'box', tvbox: 'box', 'smart-tv': 'tv', smarttv: 'tv' };
+  const get = (o, path) => path.split('.').reduce((a, k) => (a == null ? a : a[k]), o);
+
+  let CONFIG = null;
+  let PREVIEW = false;
+
+  // ---------- cabeçalho e menu ----------
+  const hdr = $('#hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const nav = $('#nav'); const menuBtn = $('#menu-btn');
+  const setMenu = (open) => { nav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', String(open)); menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu'); menuBtn.firstElementChild.firstElementChild.setAttribute('href', open ? '#i-close' : '#i-menu'); };
+  menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); menuBtn.focus(); } });
+
+  // seção ativa no menu
+  const links = $$('.nav a[href^="#"]:not(.nav-cta)');
+  const sectionIO = new IntersectionObserver((entries) => {
+    for (const en of entries) if (en.isIntersecting) {
+      links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${en.target.id}`));
+    }
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['inicio', 'aplicativo', 'recursos', 'compatibilidade', 'planos', 'duvidas'].forEach((id) => { const s = document.getElementById(id); if (s) sectionIO.observe(s); });
+
+  // ---------- revelação ao rolar ----------
+  function setupReveal(root = document) {
+    const els = $$('.reveal, .feat, .ticket, .compat-item, .sup, .faq details', root).filter((el) => !el.dataset.rv);
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) if (en.isIntersecting) { en.target.classList.remove('pending'); io.unobserve(en.target); }
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el, i) => {
+      el.dataset.rv = '1';
+      el.classList.add('reveal');
+      const r = el.getBoundingClientRect();
+      if (r.top > innerHeight) { el.classList.add('pending'); el.style.transitionDelay = `${(i % 3) * 70}ms`; io.observe(el); }
+    });
+    setTimeout(() => els.forEach((el) => el.classList.remove('pending')), 6000); // nunca deixa conteúdo oculto
+  }
+
+  // ---------- etapas ----------
+  const steps = $('#steps');
+  new IntersectionObserver((entries, io) => {
+    if (!entries[0].isIntersecting) return;
+    steps.style.setProperty('--fill', '100%');
+    $$('.step', steps).forEach((s, i) => setTimeout(() => s.classList.add('lit'), reduceMotion ? 0 : 250 + i * 380));
+    io.disconnect();
+  }, { threshold: .35 }).observe(steps);
+
+  // ---------- interface demonstrativa nas telas ----------
+  const G = ['linear-gradient(135deg,#5a0d18,#e31837)', 'linear-gradient(135deg,#2b2b30,#6d6d76)', 'linear-gradient(135deg,#ff9b6e,#a3122a)', 'linear-gradient(135deg,#1a1a1a,#3b3536)', 'linear-gradient(135deg,#e31837,#ffb48a)', 'linear-gradient(135deg,#381016,#7a1a2a)'];
+  function buildUI(kind) {
+    const tiles = (n, poster, focus = -1) => h('div', { class: `ui-tiles${poster ? ' poster' : ''}` }, Array.from({ length: n }, (_, i) => { const d = h('div', { class: i === focus ? 'focus' : null }); d.style.setProperty('--g', G[(i * 2 + (poster ? 1 : 0)) % G.length]); return d; }));
+    const brand = (CONFIG && CONFIG.site.brand_name) || 'IPTV';
+    return h('div', { class: 'ui', 'aria-hidden': 'true' },
+      h('div', { class: 'ui-top' }, h('i', { class: 'm' }), h('span', { class: 'on', text: kind === 'phone' ? brand : 'Início' }), kind !== 'phone' ? [h('span', { text: 'TV' }), h('span', { text: 'Filmes' }), h('span', { text: 'Séries' })] : null),
+      h('div', { class: 'ui-hero' }, h('b', { text: 'Título em destaque' }), h('i', { text: 'Exemplo de interface' })),
+      h('div', { class: 'ui-row' }, h('em', { text: 'Canais' }), tiles(kind === 'phone' ? 3 : 5, false, 1), h('em', { text: 'Filmes e séries' }), tiles(kind === 'phone' ? 3 : 5, true)),
+    );
+  }
+  function renderMockups() { $$('[data-ui]').forEach((el) => { el.replaceChildren(buildUI(el.dataset.ui)); }); }
+
+  // ---------- renderização a partir da configuração ----------
+  function bindTexts(site) {
+    $$('[data-bind]').forEach((el) => { const v = get(site, el.dataset.bind); if (typeof v === 'string' && v.trim()) el.textContent = v; });
+    $$('[data-brand]').forEach((el) => { el.textContent = site.brand_name || 'IPTV'; });
+    document.title = `${site.brand_name || 'IPTV'} | Planos de acesso ao aplicativo`;
+    $('#provisional-tag').hidden = site.is_configured === true;
+  }
+
+  function renderFeatures(site) {
+    const grid = $('#features');
+    grid.replaceChildren(...(site.features || []).map((f) =>
+      h('article', { class: 'feat' },
+        h('div', { class: 'feat-art', 'aria-hidden': 'true' }, icon(ICONS[f.icon] || 'check'), h('div', { class: 'bars' }, h('span'), h('span'), h('span'), h('span'))),
+        h('h3', { text: f.title }), h('p', { text: f.text }))));
+  }
+
+  function renderCompat(site) {
+    const list = (site.compatibility || []).filter((d) => d.confirmed !== false);
+    const box = $('#compat');
+    if (!list.length) {
+      box.replaceChildren(h('div', { class: 'empty', style: 'grid-column:1/-1' }, icon('devices'), h('strong', { text: 'Lista de aparelhos em confirmação.' }), h('span', { text: 'Fale com o suporte para confirmar se o seu aparelho é compatível antes de comprar.' })));
+      return;
+    }
+    box.replaceChildren(...list.map((d) => h('div', { class: 'compat-item' }, icon(ICONS[d.icon] || 'devices'), h('h3', { text: d.name }), d.note ? h('p', { text: d.note }) : null)));
+  }
+
+  function waLink(n) { return `https://wa.me/${String(n).replace(/\D/g, '')}`; }
+  function fmtPhone(n) { const d = String(n).replace(/\D/g, '').replace(/^55/, ''); return d.length === 11 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}` : d.length === 10 ? `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}` : n; }
+
+  function renderSupport(site) {
+    const s = site.support || {};
+    const lines = [];
+    if (s.whatsapp) lines.push(h('a', { href: waLink(s.whatsapp), target: '_blank', rel: 'noopener' }, icon('chat'), `${s.channel_label || 'WhatsApp'}: ${fmtPhone(s.whatsapp)}`));
+    if (s.email) lines.push(h('a', { href: `mailto:${s.email}` }, icon('mail'), s.email));
+    if (s.hours) lines.push(h('span', { style: 'font-weight:400;color:var(--muted)' }, icon('clock'), s.hours));
+    $('#contact-lines').replaceChildren(...(lines.length ? lines : [h('p', { text: 'Canal de suporte em configuração.' })]));
+    const fc = $('#footer-contact');
+    const fl = [];
+    if (s.whatsapp) fl.push(h('li', {}, h('a', { href: waLink(s.whatsapp), target: '_blank', rel: 'noopener', text: `WhatsApp ${fmtPhone(s.whatsapp)}` })));
+    if (s.email) fl.push(h('li', {}, h('a', { href: `mailto:${s.email}`, text: s.email })));
+    if (s.hours) fl.push(h('li', { text: s.hours }));
+    fc.replaceChildren(...(fl.length ? fl : [h('li', { text: 'Canal de suporte em configuração.' })]));
+    const c = site.company || {};
+    $('#company-line').textContent = [c.legal_name, c.document, c.address].filter(Boolean).join(' · ');
+  }
+
+  function renderFaq(site) {
+    $('#faq').replaceChildren(...(site.faq || []).map((f) =>
+      h('details', {}, h('summary', {}, h('span', { text: f.q }), h('span', { class: 'pm', 'aria-hidden': 'true' })), h('p', { class: 'ans', text: f.a }))));
+  }
+
+  // ---------- planos ----------
+  const days = (n) => (n === 1 ? '1 dia' : `${n} dias`);
+  function renderPlans() {
+    const box = $('#plans');
+    const plans = CONFIG.plans || [];
+    if (!plans.length) {
+      box.replaceChildren(h('div', { class: 'empty' }, icon('clock'), h('strong', { text: 'Os planos estão sendo atualizados.' }), h('span', { text: 'Volte em breve ou fale com o suporte para mais informações.' })));
+      return;
+    }
+    box.replaceChildren(...plans.map((p) => {
+      const priceKnown = Number.isInteger(p.price_cents);
+      const badge = p.is_demo ? h('span', { class: 't-badge demo', text: 'Demonstração' }) : (p.highlighted ? h('span', { class: 't-badge', text: 'Recomendado' }) : null);
+      return h('article', { class: `ticket${p.highlighted ? ' hi' : ''}`, 'aria-label': `Plano ${p.name}` },
+        h('div', { class: 't-main' },
+          h('div', { class: 't-head' }, h('span', { class: 't-kicker', text: 'Ingresso de acesso' }), badge),
+          h('h3', { text: p.name }),
+          p.description ? h('p', { class: 't-desc', text: p.description }) : null,
+          (p.features || []).length ? h('ul', { class: 't-feats' }, p.features.map((f) => h('li', {}, icon('check'), h('span', { text: f })))) : null,
+          p.limits ? h('p', { class: 't-limits' }, icon('devices'), h('span', { text: p.limits })) : null),
+        h('div', { class: 't-stub' },
+          h('div', { class: 't-price' }, h('small', { text: 'Valor total' }), h('strong', { class: priceKnown ? null : 'tbd', text: priceKnown ? brl.format(p.price_cents / 100) : 'Valor a definir' }), h('span', { text: 'pagamento único' })),
+          h('div', { class: 't-meta' }, h('div', {}, h('span', { text: 'Validade' }), h('b', { text: days(p.validity_days) })), h('div', {}, h('span', { text: 'Renovação' }), h('b', { text: 'Manual' }))),
+          h('button', { class: 'btn primary', type: 'button', onclick: () => openCheckout(p) }, 'Adquirir acesso')));
+    }));
+    setupReveal(box);
+  }
+
+  // ---------- diálogos ----------
+  function openDialog(d) { if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', ''); }
+  $$('dialog').forEach((d) => {
+    d.addEventListener('click', (e) => { if (e.target === d || e.target.closest('[data-close]')) d.close(); });
+  });
+
+  const LEGAL_TITLES = { privacy: 'Política de privacidade', terms: 'Termos de uso', commercial: 'Condições comerciais', refund: 'Política de cancelamento e reembolso' };
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-legal]');
+    if (!b) return;
+    e.preventDefault();
+    const key = b.dataset.legal;
+    $('#legal-title').textContent = LEGAL_TITLES[key];
+    $('#legal-body').textContent = get(CONFIG || {}, `site.legal.${key}`) || 'Documento indisponível.';
+    openDialog($('#legal'));
+  });
+
+  // ---------- checkout ----------
+  const form = $('#co-form');
+  let selected = null;
+  const FIELDS = ['name', 'email', 'phone', 'accept_terms'];
+  function setErr(field, msg) {
+    const el = $(`#err-${field}`); if (el) el.textContent = msg || '';
+    const input = field === 'accept_terms' ? $('#co-terms') : $(`#co-${field}`);
+    if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function showMsg(text, kind = 'error') { const m = $('#co-msg'); m.textContent = text; m.className = `form-msg${kind === 'info' ? ' info' : ''}`; m.hidden = !text; }
+  function setBusy(busy, label) {
+    const b = $('#co-submit');
+    b.disabled = busy;
+    b.replaceChildren(busy ? h('span', { class: 'spinner', 'aria-hidden': 'true' }) : icon('lock'), label || (busy ? 'Gerando pagamento…' : 'Ir para o pagamento seguro'));
+  }
+
+  function openCheckout(plan) {
+    selected = plan;
+    FIELDS.forEach((f) => setErr(f, ''));
+    showMsg('');
+    setBusy(false);
+    $('#co-plan').textContent = plan.name;
+    $('#co-desc').textContent = plan.description || '';
+    const rows = [['Validade', days(plan.validity_days)], ['Renovação', 'Manual, sem cobrança automática']];
+    if (plan.limits) rows.push(['Limites de uso', plan.limits]);
+    if ((plan.features || []).length) rows.push(['Inclui', plan.features.join(', ')]);
+    $('#co-dl').replaceChildren(...rows.map(([k, v]) => h('div', {}, h('dt', { text: k }), h('dd', { text: v }))));
+    $('#co-total').textContent = Number.isInteger(plan.price_cents) ? brl.format(plan.price_cents / 100) : 'Valor a definir';
+    const ck = CONFIG.checkout || {};
+    $('#co-phone-hint').textContent = ck.phone_field === 'optional_whatsapp' ? '(opcional — para receber também pelo WhatsApp)' : '(opcional)';
+    $('#co-secure').textContent = ck.sandbox
+      ? 'Ambiente de testes do PagBank (sandbox): nenhuma cobrança real será feita.'
+      : 'Você será direcionado ao Checkout PagBank. Não armazenamos dados de cartão.';
+    if (PREVIEW) { showMsg('Pré-visualização: as compras ficam disponíveis quando o site estiver publicado e configurado.', 'info'); setBusy(false); $('#co-submit').disabled = true; }
+    else if (!ck.enabled) { showMsg('As compras estão temporariamente indisponíveis. Fale com o suporte pelo canal oficial.', 'info'); $('#co-submit').disabled = true; }
+    openDialog($('#checkout'));
+    setTimeout(() => $('#co-name').focus(), 60);
+  }
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function validate(data) {
+    const errs = {};
+    if (data.name.length < 2 || !/\p{L}/u.test(data.name)) errs.name = 'Informe seu nome.';
+    if (!EMAIL_RE.test(data.email)) errs.email = 'Informe um e-mail válido.';
+    const digits = data.phone.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '');
+    if (data.phone && (digits.length < 10 || digits.length > 11)) errs.phone = 'Use DDD + número.';
+    if (!data.accept_terms) errs.accept_terms = 'É necessário aceitar para continuar.';
+    return errs;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!selected || PREVIEW || !(CONFIG.checkout || {}).enabled) return;
+    const data = {
+      plan_id: selected.id,
+      name: $('#co-name').value.trim(),
+      email: $('#co-email').value.trim(),
+      phone: $('#co-phone').value.trim(),
+      accept_terms: $('#co-terms').checked,
+      website: $('#co-website').value,
+    };
+    const errs = validate(data);
+    FIELDS.forEach((f) => setErr(f, errs[f]));
+    showMsg('');
+    const first = FIELDS.find((f) => errs[f]);
+    if (first) { (first === 'accept_terms' ? $('#co-terms') : $(`#co-${first}`)).focus(); return; }
+
+    setBusy(true);
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 25000);
+    try {
+      const res = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data), signal: ctrl.signal });
+      const body = await res.json().catch(() => ({}));
+      const safeUrl = (u) => /^https:\/\//.test(u) || (location.hostname === 'localhost' && /^http:\/\/localhost[:/]/.test(u));
+      if (res.ok && body.checkout_url && safeUrl(body.checkout_url)) {
+        setBusy(true, 'Abrindo o PagBank…');
+        showMsg(`Pedido ${body.code} criado. Redirecionando para o pagamento seguro.`, 'info');
+        location.assign(body.checkout_url);
+        return;
+      }
+      if (body.fields) Object.entries(body.fields).forEach(([k, v]) => setErr(k, v));
+      showMsg(body.message || 'Não foi possível iniciar o pagamento. Tente novamente.');
+      setBusy(false);
+    } catch (err) {
+      showMsg(err.name === 'AbortError' ? 'A conexão demorou demais. Verifique sua internet e tente novamente. Nenhuma cobrança foi feita.' : 'Sem conexão com o servidor. Verifique sua internet e tente novamente.');
+      setBusy(false);
+    } finally {
+      clearTimeout(timer);
+    }
+  });
+
+  // ---------- carregamento ----------
+  function applyConfig() {
+    const site = CONFIG.site;
+    bindTexts(site); renderFeatures(site); renderCompat(site); renderSupport(site); renderFaq(site); renderPlans(); renderMockups();
+    const methods = (CONFIG.checkout?.methods || ['PIX', 'CREDIT_CARD']).map((m) => METHOD_LABEL[m]).filter(Boolean);
+    if (methods.length) {
+      const txt = methods.length > 1 ? `${methods.slice(0, -1).join(', ')} ou ${methods.at(-1)}` : methods[0];
+      $('#fact-methods').textContent = `${txt[0].toUpperCase()}${txt.slice(1)} pelo PagBank`;
+      $$('[data-methods-text]').forEach((el) => { el.textContent = txt; });
+    }
+    $$('[data-email-only]').forEach((el) => { el.hidden = !CONFIG.checkout?.email_delivery; });
+    if (PREVIEW) { $('#preview-bar').hidden = false; }
+    else if (CONFIG.checkout?.sandbox && CONFIG.checkout?.enabled) { $('#preview-bar').hidden = false; $('#preview-text').textContent = 'Ambiente de testes: pagamentos no sandbox do PagBank, sem cobrança real.'; }
+    setupReveal();
+  }
+
+  async function load() {
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 8000);
+      const res = await fetch('/api/config', { headers: { Accept: 'application/json' }, signal: ctrl.signal });
+      clearTimeout(t);
+      const body = res.ok ? await res.json() : null;
+      if (!body || !body.ok || !body.site) throw new Error('config indisponível');
+      CONFIG = body;
+    } catch {
+      PREVIEW = true;
+      CONFIG = {
+        site: window.__FALLBACK_SITE__,
+        plans: [
+          { id: 'demo-1', name: 'Plano de exemplo', description: 'Os planos reais, com valores e condições, são cadastrados pelo responsável no painel.', price_cents: null, validity_days: 30, features: ['Item incluído de exemplo', 'Outro item de exemplo'], limits: 'Limite de uso de exemplo', highlighted: false, is_demo: true },
+          { id: 'demo-2', name: 'Plano de exemplo em destaque', description: 'Mostra como o plano recomendado aparece quando o responsável o marca como destaque.', price_cents: null, validity_days: 90, features: ['Item incluído de exemplo', 'Outro item de exemplo', 'Mais um item de exemplo'], limits: 'Limite de uso de exemplo', highlighted: true, is_demo: true },
+        ],
+        checkout: { enabled: false, sandbox: true, methods: ['PIX', 'CREDIT_CARD'], phone_field: 'optional' },
+      };
+    }
+    applyConfig();
+  }
+
+  $('#year').textContent = new Date().getFullYear();
+  renderMockups();
+  load();
+
+  // ---------- animações com GSAP (opcionais) ----------
+  addEventListener('load', () => {
+    const gsap = window.gsap;
+    if (!gsap || reduceMotion) { $('#stage').classList.add('settled'); return; }
+    gsap.from('.hero-anim', { y: 28, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: .12, delay: .1, clearProps: 'transform,opacity' });
+    if (window.ScrollTrigger) {
+      gsap.registerPlugin(window.ScrollTrigger);
+      const stage = $('#stage');
+      gsap.fromTo(stage, { '--ry': '-16deg', '--ry2': '-26deg', '--ry3': '24deg' }, { '--ry': '-2deg', '--ry2': '-8deg', '--ry3': '6deg', ease: 'none', scrollTrigger: { trigger: stage, start: 'top 90%', end: 'center 45%', scrub: .8 } });
+      gsap.to('.stage-floor', { opacity: .6, scale: 1.1, scrollTrigger: { trigger: stage, start: 'top 80%', end: 'bottom 40%', scrub: true } });
+    } else {
+      $('#stage').classList.add('settled');
+    }
+  });
+})();
+</script>
+
+<!-- Cena 3D (Three.js) — carregada sob demanda, com fallback visual em CSS -->
+<script type="module">
+const canvas = document.getElementById('hero-canvas');
+const hero = document.getElementById('inicio');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const saveData = navigator.connection && navigator.connection.saveData;
+const hasWebGL = (() => { try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); } catch { return false; } })();
+
+function whenIdle(fn) { ('requestIdleCallback' in window) ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 350); }
+
+if (hasWebGL && !saveData) {
+  whenIdle(async () => {
+    try { start(await import('three')); } catch (e) { console.warn('Cena 3D indisponível; usando fundo estático.', e); }
+  });
+}
+
+function start(THREE) {
+  const mobile = matchMedia('(max-width: 760px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mobile ? 1.5 : 2));
+  renderer.setClearColor(0x090909, 1);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x090909, 0.05);
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 120);
+  const camBase = new THREE.Vector3(0, 1.5, 10.5);
+  const target = new THREE.Vector3(0, 1.9, -2);
+  const uniforms = { uTime: { value: 0 } };
+
+  // --- tela curva com "filme" abstrato ---
+  const screenGeo = new THREE.PlaneGeometry(11.5, 4.9, 96, 1);
+  const p = screenGeo.attributes.position;
+  for (let i = 0; i < p.count; i++) { const x = p.getX(i); p.setZ(i, (x * x) / 28); }
+  screenGeo.computeVertexNormals();
+  const screen = new THREE.Mesh(screenGeo, new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }`,
+    fragmentShader: `
+      varying vec2 vUv; uniform float uTime;
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
+      float noise(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f);
+        return mix(mix(hash(i),hash(i+vec2(1,0)),f.x), mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x), f.y); }
+      float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.03; a*=.5; } return v; }
+      void main(){
+        vec2 uv = vUv;
+        float shot = floor(uTime/7.), t = fract(uTime/7.);
+        float seed = hash(vec2(shot, 3.7));
+        vec2 q = uv*vec2(2.4,1.) + vec2((t-.5)*.5*(seed-.5)*2., 0.);
+        float n = fbm(q*1.7 + seed*11. + vec2(0., uTime*.035));
+        vec3 red = vec3(.89,.094,.215), ember = vec3(1.,.6,.42), ink = vec3(.04,.03,.035);
+        vec3 col = mix(ink, red*.8, smoothstep(.32,.78,n));
+        col = mix(col, ember, pow(smoothstep(.55,.95,n), 2.)*.65);
+        vec2 kp = vec2(.25+seed*.5, .58+seed*.12);
+        col += vec3(1.,.93,.86)*pow(max(0., 1.-length((uv-kp)*vec2(1.5,2.4))), 3.)*.6;
+        col *= .55 + .45*smoothstep(.15+seed*.2, .8, uv.y + n*.3);
+        col *= mix(.15, 1., smoothstep(0.,.05,t)*(1.-smoothstep(.95,1.,t)));
+        col *= .95 + .05*sin(uv.y*820.);
+        col += (hash(uv*vec2(997.,613.)+fract(uTime))-.5)*.045;
+        col *= smoothstep(.82,.2,length((uv-.5)*vec2(1.,1.35)));
+        float edge = smoothstep(0.,.012,uv.x)*smoothstep(1.,.988,uv.x)*smoothstep(0.,.025,uv.y)*smoothstep(1.,.975,uv.y);
+        col = col*1.55 + vec3(.05,.012,.02);
+        gl_FragColor = vec4(col*edge, 1.);
+      }`,
+  }));
+  screen.position.set(0, 2.75, -3);
+  scene.add(screen);
+
+  // --- brilho ambiente da tela ---
+  const glowTex = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const g = c.getContext('2d'); const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    gr.addColorStop(0, 'rgba(255,90,110,0.55)'); gr.addColorStop(.45, 'rgba(227,24,55,0.18)'); gr.addColorStop(1, 'rgba(227,24,55,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })();
+  const glow = new THREE.Mesh(new THREE.PlaneGeometry(26, 14), new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+  glow.position.set(0, 2.6, -3.4);
+  scene.add(glow);
+
+  // --- feixe do projetor ---
+  const apex = new THREE.Vector3(0, 4.6, 9.2);
+  const screenCenter = new THREE.Vector3(0, 2.75, -2.8);
+  const beamLen = apex.distanceTo(screenCenter);
+  const beamGeo = new THREE.CylinderGeometry(0.06, 3.4, beamLen, 64, 1, true);
+  beamGeo.translate(0, -beamLen / 2, 0);
+  const beam = new THREE.Mesh(beamGeo, new THREE.ShaderMaterial({
+    uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+    vertexShader: `varying vec2 vUv; varying float vRim;
+      void main(){ vUv = uv; vec4 mv = modelViewMatrix*vec4(position,1.); vec3 n = normalize(normalMatrix*normal);
+        vRim = abs(dot(n, normalize(-mv.xyz))); gl_Position = projectionMatrix*mv; }`,
+    fragmentShader: `varying vec2 vUv; varying float vRim; uniform float uTime;
+      float hash(float n){ return fract(sin(n)*43758.5453); }
+      void main(){
+        float along = vUv.y;
+        float streak = .65 + .35*sin(vUv.x*60. + uTime*.4) * sin(vUv.x*23. - uTime*.25);
+        float flick = .9 + .1*hash(floor(uTime*24.));
+        float a = pow(vRim, 2.2) * (.05 + .1*along) * streak * flick;
+        gl_FragColor = vec4(vec3(1.,.86,.8)*a, a);
+      }`,
+  }));
+  beam.position.copy(apex);
+  beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), screenCenter.clone().sub(apex).normalize());
+  scene.add(beam);
+
+  // --- poeira dentro do feixe ---
+  const COUNT = mobile ? 320 : 1100;
+  const dust = new Float32Array(COUNT * 3); const seeds = new Float32Array(COUNT);
+  const dir = screenCenter.clone().sub(apex);
+  const side = new THREE.Vector3(1, 0, 0); const up = new THREE.Vector3().crossVectors(dir, side).normalize();
+  for (let i = 0; i < COUNT; i++) {
+    const t = Math.pow(Math.random(), .8) * .92 + .04;
+    const r = 3.4 * t * Math.sqrt(Math.random()) * .9; const a = Math.random() * Math.PI * 2;
+    const pt = apex.clone().addScaledVector(dir, t).addScaledVector(side, Math.cos(a) * r).addScaledVector(up, Math.sin(a) * r);
+    dust.set([pt.x, pt.y, pt.z], i * 3); seeds[i] = Math.random();
+  }
+  const dustGeo = new THREE.BufferGeometry();
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(dust, 3));
+  dustGeo.setAttribute('seed', new THREE.BufferAttribute(seeds, 1));
+  const points = new THREE.Points(dustGeo, new THREE.ShaderMaterial({
+    uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `attribute float seed; uniform float uTime; varying float vA;
+      void main(){ vec3 p = position;
+        p.x += sin(uTime*.12 + seed*40.)*.18; p.y += sin(uTime*.09 + seed*23.)*.22 + uTime*.015*(seed-.5);
+        vec4 mv = modelViewMatrix*vec4(p,1.);
+        vA = (.35 + .65*abs(sin(uTime*.7 + seed*60.))) * (.4 + seed*.6);
+        gl_PointSize = (1.2 + seed*2.6) * (${(Math.min(devicePixelRatio || 1, mobile ? 1.5 : 2)).toFixed(2)}) * (9. / -mv.z);
+        gl_Position = projectionMatrix*mv; }`,
+    fragmentShader: `varying float vA; void main(){ float d = length(gl_PointCoord-.5); float a = smoothstep(.5,0.,d)*vA*.75; gl_FragColor = vec4(vec3(1.,.9,.82)*a, a); }`,
+  }));
+  scene.add(points);
+
+  // --- fileiras de poltronas ---
+  scene.add(new THREE.AmbientLight(0x2a1416, 0.9));
+  const key = new THREE.DirectionalLight(0xff6a7e, 2.2); key.position.copy(screen.position); key.target.position.set(0, -1, 8); scene.add(key, key.target);
+  const rim = new THREE.PointLight(0xffb48a, 18, 22, 2); rim.position.set(0, 2.5, -1); scene.add(rim);
+  const seatGeo = new THREE.BoxGeometry(0.92, 0.95, 0.22); seatGeo.translate(0, 0.47, 0);
+  const seatMat = new THREE.MeshStandardMaterial({ color: 0x1c1416, roughness: .55, metalness: .08 });
+  const rows = [{ z: 3.4, y: -1.3 }, { z: 5.0, y: -0.9 }, { z: 6.6, y: -0.5 }, { z: 8.2, y: -0.1 }];
+  const perRow = 17;
+  const seats = new THREE.InstancedMesh(seatGeo, seatMat, rows.length * perRow);
+  const m = new THREE.Matrix4(); const q = new THREE.Quaternion(); const s = new THREE.Vector3(1, 1, 1); let k = 0;
+  rows.forEach((row, ri) => {
+    for (let i = 0; i < perRow; i++) {
+      const x = (i - (perRow - 1) / 2) * 1.05 + (ri % 2 ? .52 : 0);
+      if (Math.abs(x) < 0.6 && ri > 1) { m.makeScale(0, 0, 0); seats.setMatrixAt(k++, m); continue; } // corredor
+      const z = row.z + (x * x) / 34;
+      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -x / 34);
+      m.compose(new THREE.Vector3(x, row.y, z), q, s); seats.setMatrixAt(k++, m);
+    }
+  });
+  scene.add(seats);
+
+  // --- luzes de degrau (detalhe de sala de cinema) ---
+  const stepPts = []; rows.forEach((r) => { stepPts.push(-0.62, r.y + .02, r.z + .45, 0.62, r.y + .02, r.z + .45); });
+  const stepGeo = new THREE.BufferGeometry(); stepGeo.setAttribute('position', new THREE.Float32BufferAttribute(stepPts, 3));
+  scene.add(new THREE.Points(stepGeo, new THREE.PointsMaterial({ color: 0xff3a57, size: .09, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false })));
+
+  // --- câmera, redimensionamento e ciclo ---
+  const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+  addEventListener('pointermove', (e) => { pointer.tx = (e.clientX / innerWidth - .5) * 2; pointer.ty = (e.clientY / innerHeight - .5) * 2; }, { passive: true });
+  function resize() {
+    const w = hero.clientWidth, h = hero.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.fov = camera.aspect < .8 ? 66 : camera.aspect < 1.3 ? 54 : 42;
+    target.y = camera.aspect < .8 ? -0.5 : 1.9;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(hero); resize();
+
+  let running = true, visible = true, raf = 0, last = performance.now(), time = 3;
+  function frame(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now; time += dt;
+    uniforms.uTime.value = time;
+    pointer.x += (pointer.tx - pointer.x) * .04; pointer.y += (pointer.ty - pointer.y) * .04;
+    const prog = Math.min(1, Math.max(0, scrollY / (hero.clientHeight || 1)));
+    camera.position.set(camBase.x + Math.sin(time * .11) * .28 + pointer.x * .55, camBase.y + Math.sin(time * .17) * .07 - pointer.y * .22 + prog * .4, camBase.z - prog * 2.2);
+    camera.lookAt(target);
+    const pulse = .82 + .18 * Math.sin(time * .9) * Math.sin(time * .37);
+    key.intensity = 2.2 * pulse; rim.intensity = 18 * pulse; glow.material.opacity = .75 + .25 * pulse;
+    renderer.render(scene, camera);
+    if (!canvas.classList.contains('on')) canvas.classList.add('on');
+    if (running && visible && !reduce) raf = requestAnimationFrame(frame);
+  }
+  const kick = () => { cancelAnimationFrame(raf); last = performance.now(); raf = requestAnimationFrame(frame); };
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible && !reduce) kick(); }, { threshold: 0 }).observe(hero);
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running && visible && !reduce) kick(); });
+  if (reduce) { new ResizeObserver(() => requestAnimationFrame(frame)).observe(hero); }
+  kick();
+}
+</script>
+</body>
+</html>
